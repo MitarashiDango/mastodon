@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-
 import ReactSwipeable from 'react-swipeable';
 import { getPreviousLink, getNextLink } from './tabs_bar';
 
@@ -33,6 +32,21 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+  handleRightSwipe = () => {
+    const previousLink = getPreviousLink(this.context.router.history.location.pathname);
+
+    if (previousLink) {
+      this.context.router.history.push(previousLink);
+    }
+  }
+
+  handleLeftSwipe = () => {
+    const previousLink = getNextLink(this.context.router.history.location.pathname);
+
+    if (previousLink) {
+      this.context.router.history.push(previousLink);
+    }
+  };
 
   renderLoading = () => {
     return <ColumnLoading />;
@@ -47,9 +61,9 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
     if (singleColumn) {
       return (
-        <div className='columns-area'>
+        <ReactSwipeable onSwipedLeft={this.handleLeftSwipe} onSwipedRight={this.handleRightSwipe} delta={30} className='columns-area'>
           {children}
-        </div>
+        </ReactSwipeable>
       );
     }
 
