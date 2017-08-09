@@ -51,7 +51,6 @@ Rails.application.routes.draw do
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
     resource :outbox, only: [:show], module: :activitypub
-    resource :inbox, only: [:create], module: :activitypub
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account

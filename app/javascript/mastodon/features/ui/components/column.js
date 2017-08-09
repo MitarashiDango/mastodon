@@ -25,17 +25,6 @@ export default class Column extends React.PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
 
-  scrollTop () {
-    const scrollable = this.node.querySelector('.scrollable');
-
-    if (!scrollable) {
-      return;
-    }
-
-    this._interruptScrollAnimation = scrollTop(scrollable);
-  }
-
-
   handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();

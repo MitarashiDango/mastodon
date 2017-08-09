@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::AcceptFollowSerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor
+  attributes :type, :actor
 
   has_one :object, serializer: ActivityPub::FollowSerializer
-
-  def id
-    [ActivityPub::TagManager.instance.uri_for(object.target_account), '#accepts/follows/', object.id].join
-  end
 
   def type
     'Accept'

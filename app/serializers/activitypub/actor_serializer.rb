@@ -5,26 +5,9 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :preferred_username,
-             :name, :summary, :url
+             :name, :summary, :icon, :image
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
-
-  class ImageSerializer < ActiveModel::Serializer
-    include RoutingHelper
-
-    attributes :type, :url
-
-    def type
-      'Image'
-    end
-
-    def url
-      full_asset_url(object.url(:original))
-    end
-  end
-
-  has_one :icon,  serializer: ImageSerializer, if: :avatar_exists?
-  has_one :image, serializer: ImageSerializer, if: :header_exists?
 
   def id
     account_url(object)
@@ -43,7 +26,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def inbox
-    account_inbox_url(object)
+    nil
   end
 
   def outbox
@@ -63,26 +46,14 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def icon
-    object.avatar
+    full_asset_url(object.avatar.url(:original))
   end
 
   def image
-    object.header
+    full_asset_url(object.header.url(:original))
   end
 
   def public_key
     object
-  end
-
-  def url
-    short_account_url(object)
-  end
-
-  def avatar_exists?
-    object.avatar.exists?
-  end
-
-  def header_exists?
-    object.header.exists?
   end
 end

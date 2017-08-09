@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::UndoBlockSerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor
+  attributes :type, :actor
 
   has_one :object, serializer: ActivityPub::BlockSerializer
-
-  def id
-    [ActivityPub::TagManager.instance.uri_for(object.account), '#blocks/', object.id, '/undo'].join
-  end
 
   def type
     'Undo'

@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::DeleteSerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor
+  attributes :type, :actor
   attribute :virtual_object, key: :object
-
-  def id
-    [ActivityPub::TagManager.instance.uri_for(object), '#delete'].join
-  end
 
   def type
     'Delete'
