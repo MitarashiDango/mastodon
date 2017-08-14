@@ -78,7 +78,8 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def activitypub_ready?
-    false
+    !@webfinger.link('self').nil? &&
+      ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self').type)
   end
 
   def handle_ostatus
