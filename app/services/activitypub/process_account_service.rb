@@ -55,10 +55,9 @@ class ActivityPub::ProcessAccountService < BaseService
 
     return if value.nil?
     return @json[key]['url'] if @json[key].is_a?(Hash)
-    return unless value =~ %r{https?://}
 
     image = fetch_resource(value)
-    image.nil? ? value : image['url']
+    image['url'] if image
   end
 
   def public_key
