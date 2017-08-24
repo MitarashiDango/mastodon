@@ -162,6 +162,9 @@ Rails.application.routes.draw do
 
           resource :mute, only: :create
           post :unmute, to: 'mutes#destroy'
+
+          resource :pin, only: :create
+          post :unpin, to: 'pins#destroy'
         end
 
         member do
@@ -175,7 +178,8 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
       end
-      resources :streaming,  only: [:index]
+
+      resources :streaming, only: [:index]
 
       get '/search', to: 'search#index', as: :search
 
@@ -210,8 +214,14 @@ Rails.application.routes.draw do
         resource :search, only: :show, controller: :search
         resources :relationships, only: :index
       end
+
       resources :accounts, only: [:show] do
-        resources :statuses, only: :index, controller: 'accounts/statuses'
+        resources :statuses, only: :index, controller: 'accounts/statuses' do
+          collection do
+            get :pinned
+          end
+        end
+
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
 
@@ -245,7 +255,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   match '*unmatched_route',
-    via: :all,
-    to: 'application#raise_not_found',
-    format: false
+        via: :all,
+        to: 'application#raise_not_found',
+        format: false
 end
