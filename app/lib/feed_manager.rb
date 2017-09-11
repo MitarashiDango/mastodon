@@ -5,7 +5,7 @@ require 'singleton'
 class FeedManager
   include Singleton
 
-  MAX_ITEMS = 6000
+  MAX_ITEMS = 400
 
   def key(type, id)
     "feed:#{type}:#{id}"
