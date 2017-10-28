@@ -109,9 +109,14 @@ export default class MediaModal extends ImmutablePureComponent {
         {leftNav}
 
         <div className='media-modal__content'>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          <ReactSwipeableViews containerStyle={containerStyle} onChangeIndex={this.handleSwipe} index={index}>
-            {content}
+          <ReactSwipeableViews axis="y" onChangeIndex={onClose}>
+            <div>
+              <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
+              <ReactSwipeableViews containerStyle={containerStyle} onChangeIndex={this.handleSwipe} index={index}>
+                {content}
+              </ReactSwipeableViews>
+            </div>
+            <div />
           </ReactSwipeableViews>
         </div>
         <ul className='media-modal__pagination'>
