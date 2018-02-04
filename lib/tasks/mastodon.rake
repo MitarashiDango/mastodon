@@ -117,6 +117,18 @@ namespace :mastodon do
       end
     end
 
+    desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week) (without marked favourite status)'
+    task remove_remote_without_favourite: :environment do
+      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+
+      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).find_each do |media|
+        if Account.where(id: Favourite.select('account_id').where(status_id: media.status_id)).where(domain: nil).count == 0
+          media.file.destroy
+          media.save
+        end
+      end
+    end
+
     desc 'Set unknown attachment type for remote-only attachments'
     task set_unknown: :environment do
       puts 'Setting unknown attachment type for remote-only attachments...'
