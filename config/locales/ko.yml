@@ -769,3 +769,6 @@ ko:
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
+  views:
+    pagination:
+      truncate: "&hellip;"

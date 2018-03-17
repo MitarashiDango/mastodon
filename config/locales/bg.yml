@@ -158,3 +158,6 @@ bg:
   users:
     invalid_email: E-mail адресът е невалиден
     invalid_otp_token: Невалиден код
+  views:
+    pagination:
+      truncate: "&hellip;"

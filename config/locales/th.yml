@@ -321,3 +321,6 @@ th:
   users:
     invalid_email: อีเมล์ไม่ถูกต้อง
     invalid_otp_token: two-factor code ไม่ถูกต้อง
+  views:
+    pagination:
+      truncate: "&hellip;"

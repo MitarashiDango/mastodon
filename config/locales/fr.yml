@@ -774,3 +774,6 @@ fr:
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
+  views:
+    pagination:
+      truncate: "&hellip;"

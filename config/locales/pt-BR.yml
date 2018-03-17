@@ -774,3 +774,6 @@ pt-BR:
     invalid_otp_token: Código de autenticação inválido
     seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e password não estão disponíveis.
     signed_in_as: 'Acesso como:'
+  views:
+    pagination:
+      truncate: "&hellip;"

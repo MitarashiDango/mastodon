@@ -719,3 +719,6 @@ sr:
     invalid_email: Адреса е-поште није исправна
     invalid_otp_token: Неисправни двофакторски код
     signed_in_as: 'Пријављен као:'
+  views:
+    pagination:
+      truncate: "&hellip;"

@@ -774,3 +774,6 @@ ca:
     invalid_otp_token: El codi de dos factors no és correcte
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
+  views:
+    pagination:
+      truncate: "&hellip;"

@@ -774,3 +774,6 @@ gl:
     invalid_otp_token: Código de doble-factor non válido
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
+  views:
+    pagination:
+      truncate: "&hellip;"

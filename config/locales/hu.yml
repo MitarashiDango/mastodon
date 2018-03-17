@@ -748,3 +748,6 @@ hu:
     invalid_email: A megadott e-mail cím helytelen
     invalid_otp_token: Érvénytelen ellenőrző kód
     signed_in_as: Bejelentkezve mint
+  views:
+    pagination:
+      truncate: "&hellip;"

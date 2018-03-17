@@ -726,3 +726,6 @@ ru:
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код
     signed_in_as: 'Выполнен вход под именем:'
+  views:
+    pagination:
+      truncate: "&hellip;"

@@ -299,3 +299,6 @@ io:
   users:
     invalid_email: La retpost-adreso ne esas valida
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
+  views:
+    pagination:
+      truncate: "&hellip;"

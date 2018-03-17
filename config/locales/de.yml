@@ -702,3 +702,6 @@ de:
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
+  views:
+    pagination:
+      truncate: "&hellip;"

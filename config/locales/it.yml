@@ -164,3 +164,6 @@ it:
   users:
     invalid_email: L'indirizzo e-mail inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
+  views:
+    pagination:
+      truncate: "&hellip;"

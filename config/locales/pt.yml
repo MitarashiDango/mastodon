@@ -728,3 +728,6 @@ pt:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
     signed_in_as: 'Registado como:'
+  views:
+    pagination:
+      truncate: "&hellip;"

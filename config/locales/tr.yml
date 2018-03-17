@@ -319,3 +319,6 @@ tr:
   users:
     invalid_email: E-posta adresiniz geçersiz
     invalid_otp_token: İki-faktörlü kodunuz geçersiz
+  views:
+    pagination:
+      truncate: "&hellip;"

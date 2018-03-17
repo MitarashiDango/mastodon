@@ -191,3 +191,6 @@ fi:
   users:
     invalid_email: Virheellinen sähköposti
     invalid_otp_token: Virheellinen kaksivaihetunnistuskoodi
+  views:
+    pagination:
+      truncate: "&hellip;"

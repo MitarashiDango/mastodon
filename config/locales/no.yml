@@ -746,3 +746,6 @@
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
     signed_in_as: 'Innlogget som:'
+  views:
+    pagination:
+      truncate: "&hellip;"

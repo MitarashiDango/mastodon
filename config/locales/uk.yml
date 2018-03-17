@@ -314,3 +314,6 @@ uk:
   users:
     invalid_email: Введений email неправильний
     invalid_otp_token: Введено неправильний код
+  views:
+    pagination:
+      truncate: "&hellip;"

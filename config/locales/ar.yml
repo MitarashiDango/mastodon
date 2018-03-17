@@ -554,3 +554,6 @@ ar:
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح
+  views:
+    pagination:
+      truncate: "&hellip;"

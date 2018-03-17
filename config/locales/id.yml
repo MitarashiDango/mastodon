@@ -317,3 +317,6 @@ id:
   users:
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
+  views:
+    pagination:
+      truncate: "&hellip;"

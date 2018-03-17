@@ -773,3 +773,6 @@ es:
     invalid_otp_token: Código de dos factores incorrecto
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
+  views:
+    pagination:
+      truncate: "&hellip;"

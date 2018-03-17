@@ -396,3 +396,6 @@ he:
   users:
     invalid_email: כתובת הדוא"ל אינה חוקית
     invalid_otp_token: קוד דו-שלבי שגוי
+  views:
+    pagination:
+      truncate: "&hellip;"

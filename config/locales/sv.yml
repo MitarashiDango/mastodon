@@ -774,3 +774,6 @@ sv:
     invalid_otp_token: Ogiltig tvåfaktorkod
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
+  views:
+    pagination:
+      truncate: "&hellip;"

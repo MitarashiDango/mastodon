@@ -825,3 +825,6 @@ oc:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
     signed_in_as: 'Session a :'
+  views:
+    pagination:
+      truncate: "&hellip;"

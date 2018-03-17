@@ -776,3 +776,6 @@ eo:
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Ensalutinta kiel:'
+  views:
+    pagination:
+      truncate: "&hellip;"

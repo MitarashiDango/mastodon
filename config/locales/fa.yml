@@ -707,3 +707,6 @@ fa:
     invalid_email: نشانی ایمیل نامعتبر است
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     signed_in_as: 'واردشده به نام:'
+  views:
+    pagination:
+      truncate: "&hellip;"

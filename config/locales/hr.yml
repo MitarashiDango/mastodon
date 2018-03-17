@@ -155,3 +155,6 @@ hr:
   users:
     invalid_email: E-mail adresa nije valjana
     invalid_otp_token: Nevaljani dvo-faktorski kod
+  views:
+    pagination:
+      truncate: "&hellip;"
