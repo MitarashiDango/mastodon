@@ -789,7 +789,7 @@ namespace :mastodon do
         progress_bar.increment
 
         begin
-          res = Request.new(:head, account.uri).perform
+          code = Request.new(:head, account.uri).perform(&:code)
         rescue StandardError
           # This could happen due to network timeout, DNS timeout, wrong SSL cert, etc,
           # which should probably not lead to perceiving the account as deleted, so
@@ -797,7 +797,7 @@ namespace :mastodon do
           next
         end
 
-        if [404, 410].include?(res.code)
+        if [404, 410].include?(code)
           if options[:force]
             SuspendAccountService.new.call(account)
             account.destroy
