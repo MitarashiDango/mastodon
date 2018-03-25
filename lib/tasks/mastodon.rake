@@ -819,6 +819,60 @@ namespace :mastodon do
         end
       end
     end
+
+    task purge_remote_accounts: :environment do
+      prepare_for_options!
+
+      options = {}
+
+      OptionParser.new do |opts|
+        opts.banner = 'Usage: rails mastodon:maintenance:purge_remote_accounts [options]'
+
+        opts.on('-d', '--domain VALUE', 'Instance domain') do |domain|
+          options[:domain] = domain
+        end
+
+        opts.on('-f', '--force', 'Remove all encountered accounts without asking for confirmation') do
+          options[:force] = true
+        end
+
+        opts.on('-h', '--help', 'Display this message') do
+          puts opts
+          exit
+        end
+      end.parse!
+
+      disable_log_stdout!
+
+      total        = Account.remote.where(domain: options[:domain]).count
+      progress_bar = ProgressBar.create(total: total, format: '%c/%C |%w>%i| %e')
+
+      if options[:domain].present?
+        Account.remote.where(domain: options[:domain]).partitioned.find_each do |account|
+          progress_bar.increment
+
+          if options[:force]
+            puts "Purge: #{account.acct}"
+            SuspendAccountService.new.call(account)
+            account.destroy
+          else
+            progress_bar.pause
+            progress_bar.clear
+            print "Purge #{account.acct} from the database? [Y/n]: ".colorize(:yellow)
+            confirm = STDIN.gets.chomp
+            puts ''
+            progress_bar.resume
+
+            if confirm.casecmp('n').zero?
+              next
+            else
+              SuspendAccountService.new.call(account)
+              account.destroy
+            end
+          end
+        end
+      end
+    end
   end
 end
 
