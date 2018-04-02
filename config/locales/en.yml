@@ -60,6 +60,7 @@ en:
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
+      avatar: Avatar
       by_domain: Domain
       confirm: Confirm
       confirmed: Confirmed
@@ -108,6 +109,7 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh avatar
+      remove_avatar: Remove avatar
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
@@ -150,6 +152,7 @@ en:
         enable_user: "%{name} enabled login for user %{target}"
         memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
         promote_user: "%{name} promoted user %{target}"
+        remove_avatar_user: "%{name} removed %{target}'s avatar"
         reset_password_user: "%{name} reset password of user %{target}"
         resolve_report: "%{name} dismissed report %{target}"
         silence_account: "%{name} silenced %{target}'s account"
@@ -382,6 +385,7 @@ en:
     security: Security
     set_new_password: Set new password
   authorize_follow:
+    already_following: You are already following this account
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
     follow_request: 'You have sent a follow request to:'
@@ -474,6 +478,7 @@ en:
       '21600': 6 hours
       '3600': 1 hour
       '43200': 12 hours
+      '604800': 1 week
       '86400': 1 day
     expires_in_prompt: Never
     generate: Generate
@@ -634,6 +639,15 @@ en:
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications
   statuses:
+    attached:
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    content_warning: 'Content warning: %{warning}'
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
