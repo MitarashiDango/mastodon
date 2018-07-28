@@ -36,19 +36,20 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     follow: Śledź
-    followers: Śledzących
-    following: Śledzi
+    followers: Śledzący
+    following: Śledzeni
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
+    network_hidden: Ta informacja nie jest dostępna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
-    remote_follow: Śledź zdalnie
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
@@ -204,6 +205,27 @@ pl:
       update_failed_msg: Nie udało się zaktualizować emoji
       updated_msg: Pomyślnie zaktualizowano emoji!
       upload: Dodaj
+    dashboard:
+      backlog: zaległe zadania
+      config: Konfiguracja
+      feature_deletions: Usuwanie kont
+      feature_invites: Zaproszenia
+      feature_registrations: Rejestracja
+      feature_relay: Przekazywanie federacji
+      features: Możliwości
+      hidden_service: Federowanie z ukrytymi usługami
+      open_reports: otwarte zgłoszenia
+      recent_users: Ostatni użytkownicy
+      search: Wyszukiwanie pełnego tekstu
+      single_user_mode: Tryb jednego użytkownika
+      software: Oprogramowanie
+      space: Używana powierzchnia
+      title: Panel administracyjny
+      total_users: łącznie użytkowników
+      trends: Na czasie
+      week_interactions: interakcje w tym tygodniu
+      week_users_active: aktywni w tym tygodniu
+      week_users_new: rejestracje w tym tygodniu
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
@@ -260,6 +282,14 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    relays:
+      add_new: Dodaj nowy
+      description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
+      enable_hint: Jeżeli włączone, Twój serwer zasubskrybuje wszystkie publiczne wpisy z tego przekaźnika i zacznie wysyłać tam publiczne wpisy z tego serwera.
+      inbox_url: Adres przekaźnika
+      setup: Skonfiguruj połączenie z przekaźnikiem
+      status: Stan
+      title: Przekaźniki
     report_notes:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
@@ -315,6 +345,9 @@ pl:
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
+      preview_sensitive_media:
+        desc_html: Podgląd odnośników na innych instancjach będzie wyświetlał miniaturę nawet jeśli zawartość multimedialna zostanie oznaczona jako wrażliwa
+        title: Wyświetlaj zawartość wrażliwą w podglądzie OpenGraph
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -423,7 +456,7 @@ pl:
     following: 'Pomyślnie! Od teraz śledzisz:'
     post_follow:
       close: Ewentualnie, możesz po prostu zamknąć tę stronę.
-      return: Powróć do strony użytkownika
+      return: Pokaż stronę użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
   datetime:
@@ -473,6 +506,22 @@ pl:
     follows: Śledzeni
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
+  filters:
+    contexts:
+      home: Strona główna
+      notifications: Powiadomienia
+      public: Publiczne osie czasu
+      thread: Konwersacje
+    edit:
+      title: Edytuj filtr
+    errors:
+      invalid_context: Nie podano lub podano nieprawidłową treść
+      invalid_irreversible: Nieodwracalne filtrowanie działa tylko na stronie głównej i w powiadomieniach
+    index:
+      delete: Usuń
+      title: Filtry
+    new:
+      title: Dodaj nowy filtr
   followers:
     domain: Domena
     explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje wpisy, musisz kontrolować, kto śledzi Twój profil. <strong>Twoje prywatne wpisy są dostarczane na te instancje, na których jesteś śledzony</strong>. Możesz sprawdzać, kto Cię śledzi i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
@@ -487,7 +536,6 @@ pl:
     unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
-    powered_by: uruchomione na %{link}
     save_changes: Zapisz zmiany
     validation_errors:
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
@@ -515,6 +563,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
+    invited_by: 'Zostałeś zaproszony przez:'
     max_uses:
       few: "%{count} użycia"
       many: "%{count} użyć"
@@ -526,8 +575,6 @@ pl:
       expires_at: Wygaśnie po
       uses: Użycia
     title: Zaproś użytkowników
-  landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
-  landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   lists:
     errors:
       limit: Przekroczyłeś maksymalną liczbę utworzonych list
@@ -602,23 +649,10 @@ pl:
     other: Pozostałe
     publishing: Publikowanie
     web: Sieć
-  push_notifications:
-    favourite:
-      title: "%{name} dodał Twój wpis do ulubionych"
-    follow:
-      title: "%{name} zaczął Cię śledzić"
-    group:
-      title: "%{count} powiadomień"
-    mention:
-      action_boost: Podbij
-      action_expand: Pokaż więcej
-      action_favourite: Dodaj do ulubionych
-      title: "%{name} wspomniał o Tobie"
-    reblog:
-      title: "%{name} podbił Twój wpis"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
+    no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
   remote_unfollow:
@@ -683,7 +717,7 @@ pl:
     your_apps: Twoje aplikacje
   statuses:
     attached:
-      description: 'Przytwierdzony: %{attached}'
+      description: 'Załączono: %{attached}'
       image:
         few: "%{count} obrazy"
         many: "%{count} obrazów"
@@ -694,10 +728,12 @@ pl:
         many: "%{count} filmów"
         one: "%{count} film"
         other: "%{count} filmów"
+    boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     disallowed_hashtags:
       one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+    language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
@@ -715,7 +751,6 @@ pl:
       unlisted: Niewypisane
       unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
-    click_to_show: Naciśnij aby wyświetlić
     pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
@@ -784,9 +819,13 @@ pl:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="children">Korzystanie ze strony przez dzieci</h3>
 
-      <p>Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się w USA, a nie ukończyłeś 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+
+      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
+
+      <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
 
       <hr class="spacer" />
 
@@ -801,6 +840,7 @@ pl:
   themes:
     contrast: Wysoki kontrast
     default: Mastodon
+    mastodon-light: Mastodon (jasny)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -846,5 +886,6 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
