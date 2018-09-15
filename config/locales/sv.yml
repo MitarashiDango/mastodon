@@ -9,9 +9,6 @@ sv:
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: N/A
-    description_headline: Vad är %{domain}?
-    domain_count_after: andra instanser
-    domain_count_before: Uppkopplad mot
     extended_description_html: |
       <h3>En bra plats för regler</h3>
       <p>Den utökade beskrivningen har inte konfigurerats ännu.</p>
@@ -274,7 +271,6 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
-      id: ID
       mark_as_resolved: Markera som löst
       mark_as_unresolved: Markera som olöst
       notes:
@@ -285,7 +281,6 @@ sv:
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
       reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
-      report_contents: Innehåll
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
@@ -293,12 +288,10 @@ sv:
       silence_account: Tysta ner konto
       status: Status
       suspend_account: Suspendera konto
-      target: Mål
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
       updated_at: Uppdaterad
-      view: Granska
     settings:
       activity_api_enabled:
         desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar per vecka

@@ -5,9 +5,6 @@ tr:
     about_this: Bu sunucu hakkında
     closed_registrations: Bu sunucu şu anda yeni kayıt almamaktadır.
     contact: İletişim
-    description_headline: Peki %{domain} nedir?
-    domain_count_after: sunucu var.
-    domain_count_before: Bağlı olduğu
     other_instances: Diğer sunucular
     source_code: Kaynak kodu
     status_count_after: adet gönderi yazıldı.
@@ -113,20 +110,16 @@ tr:
     reports:
       comment:
         none: Yok
-      id: ID
       mark_as_resolved: Giderildi olarak işaretle
       report: 'Şikayet #%{id}'
-      report_contents: İçerik
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
       resolved: Giderildi
       silence_account: Hesabı sustur
       status: Durum
       suspend_account: Hesabı uzaklaştır
-      target: Hedef
       title: Şikayetler
       unresolved: Giderilmedi
-      view: Görüntüle
     settings:
       contact_information:
         email: Herkese açık e-posta adresiniz

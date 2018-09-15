@@ -5,9 +5,6 @@ th:
     about_this: เกี่ยวกับอินซะแตนซ์นี้
     closed_registrations: อินซะแตนซ์นี้ปิดรับลงทะเบียนแล้ว.
     contact: ติดต่อ
-    description_headline: โดเมนคือ %{domain} ?
-    domain_count_after: อินซะแตนซ์อื่นๆ
-    domain_count_before: เชื่อมต่อกับ
     other_instances: อินซะแตนซ์อื่นๆ
     source_code: ซอร์สโค๊ด
     status_count_after: สถานะ
@@ -114,20 +111,16 @@ th:
     reports:
       comment:
         none: None
-      id: ไอดี
       mark_as_resolved: ทำเครื่องหมายว่าจัดการแล้ว
       report: 'Report #%{id}'
-      report_contents: เนื้อหา
       reported_account: รายงานแอคเคาท์
       reported_by: รายงานโดย
       resolved: จัดการแล้ว
       silence_account: แอคเค๊าท์ที่ปิดเสียง
       status: สถานะ
       suspend_account: แอคเค๊าท์ที่หยุดไว้
-      target: เป้าหมาย
       title: รายงาน
       unresolved: Unresolved
-      view: วิว
     settings:
       contact_information:
         email: กรอกที่อยู่อีเมล์สาธารณะ

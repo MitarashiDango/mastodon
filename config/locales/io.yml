@@ -5,9 +5,6 @@ io:
     about_this: Pri ta instaluro
     closed_registrations: Membresko ne nun esas posible en ta instaluro.
     contact: Kontaktar
-    description_headline: Quo esas %{domain}?
-    domain_count_after: altra instaluri
-    domain_count_before: Konektita ad
     other_instances: Altra instaluri
     source_code: Fontkodexo
     status_count_after: mesaji
@@ -105,7 +102,6 @@ io:
     reports:
       comment:
         none: None
-      id: ID
       mark_as_resolved: Mark as resolved
       report: 'Report #%{id}'
       reported_account: Reported account
@@ -114,10 +110,8 @@ io:
       silence_account: Silence account
       status: Status
       suspend_account: Suspend account
-      target: Target
       title: Reports
       unresolved: Unresolved
-      view: View
     settings:
       contact_information:
         email: Enter a public e-mail address

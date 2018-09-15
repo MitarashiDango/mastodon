@@ -8,9 +8,6 @@ pt:
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
-    description_headline: O que é o %{domain}?
-    domain_count_after: outras instâncias
-    domain_count_before: Ligado a
     extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição estendida ainda não foi configurada.</p>
@@ -247,20 +244,16 @@ pt:
       are_you_sure: Tens a certeza?
       comment:
         none: Nenhum
-      id: ID
       mark_as_resolved: Marcar como resolvido
       report: 'Denúncia #%{id}'
-      report_contents: Conteúdos
       reported_account: Conta denunciada
       reported_by: Denúnciada por
       resolved: Resolvido
       silence_account: Conta silenciada
       status: Estado
       suspend_account: Conta suspensa
-      target: Alvo
       title: Denúncias
       unresolved: Por resolver
-      view: Ver
     settings:
       activity_api_enabled:
         desc_html: Contagem semanais de publicações locais, utilizadores activos e novos registos
