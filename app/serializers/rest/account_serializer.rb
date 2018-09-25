@@ -13,6 +13,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
   class FieldSerializer < ActiveModel::Serializer
     attributes :name, :value
 
+    attribute :verified_at, if: :verifiable?
+
+    delegate :verifiable?, to: :object
+
     def value
       Formatter.instance.format_field(object.account, object.value)
     end
@@ -25,7 +29,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    Formatter.instance.simplified_format(object, custom_emojify: true)
+    Formatter.instance.simplified_format(object)
   end
 
   def url

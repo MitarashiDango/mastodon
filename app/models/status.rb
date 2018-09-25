@@ -15,8 +15,6 @@
 #  visibility             :integer          default("public"), not null
 #  spoiler_text           :text             default(""), not null
 #  reply                  :boolean          default(FALSE), not null
-#  favourites_count       :integer          default(0), not null
-#  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :bigint(8)
 #  local                  :boolean
@@ -52,13 +50,14 @@ class Status < ApplicationRecord
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
-  has_many :media_attachments, dependent: :destroy
+  has_many :media_attachments, dependent: :nullify
 
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :preview_cards
 
   has_one :notification, as: :activity, dependent: :destroy
   has_one :stream_entry, as: :activity, inverse_of: :status
+  has_one :status_stat, inverse_of: :status
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
@@ -81,7 +80,25 @@ class Status < ApplicationRecord
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
 
-  cache_associated :account, :application, :media_attachments, :conversation, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, :conversation, mentions: :account], thread: :account
+  cache_associated :account,
+                   :application,
+                   :media_attachments,
+                   :conversation,
+                   :status_stat,
+                   :tags,
+                   :stream_entry,
+                   mentions: :account,
+                   reblog: [
+                     :account,
+                     :application,
+                     :stream_entry,
+                     :tags,
+                     :media_attachments,
+                     :conversation,
+                     :status_stat,
+                     mentions: :account,
+                   ],
+                   thread: :account
 
   delegate :domain, to: :account, prefix: true
 
@@ -175,6 +192,26 @@ class Status < ApplicationRecord
     @marked_for_mass_destruction
   end
 
+  def replies_count
+    status_stat&.replies_count || 0
+  end
+
+  def reblogs_count
+    status_stat&.reblogs_count || 0
+  end
+
+  def favourites_count
+    status_stat&.favourites_count || 0
+  end
+
+  def increment_count!(key)
+    update_status_stat!(key => public_send(key) + 1)
+  end
+
+  def decrement_count!(key)
+    update_status_stat!(key => [public_send(key) - 1, 0].max)
+  end
+
   after_create  :increment_counter_caches
   after_destroy :decrement_counter_caches
 
@@ -187,12 +224,15 @@ class Status < ApplicationRecord
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
-  before_validation :set_sensitivity
   before_validation :set_local
 
   class << self
-    def not_in_filtered_languages(account)
-      where(language: nil).or where.not(language: account.filtered_languages)
+    def cache_ids
+      left_outer_joins(:status_stat).select('statuses.id, greatest(statuses.updated_at, status_stats.updated_at) AS updated_at')
+    end
+
+    def in_chosen_languages(account)
+      where(language: nil).or where(language: account.chosen_languages)
     end
 
     def as_home_timeline(account)
@@ -201,7 +241,7 @@ class Status < ApplicationRecord
 
     def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
       # direct timeline is mix of direct message from_me and to_me.
-      # 2 querys are executed with pagination.
+      # 2 queries are executed with pagination.
       # constant expression using arel_table is required for partial index
 
       # _from_me part does not require any timeline filters
@@ -306,7 +346,11 @@ class Status < ApplicationRecord
         # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
         visibility.push(:private) if account.following?(target_account)
 
-        where(visibility: visibility).or(where(id: account.mentions.select(:status_id)))
+        scope = left_outer_joins(:reblog)
+
+        scope.where(visibility: visibility)
+             .or(scope.where(id: account.mentions.select(:status_id)))
+             .merge(scope.where(reblog_of_id: nil).or(scope.where.not(reblogs_statuses: { account_id: account.excluded_from_timeline_account_ids })))
       end
     end
 
@@ -330,7 +374,7 @@ class Status < ApplicationRecord
     def filter_timeline_for_account(query, account, local_only)
       query = query.not_excluded_by_account(account)
       query = query.not_domain_blocked_by_account(account) unless local_only
-      query = query.not_in_filtered_languages(account) if account.filtered_languages.present?
+      query = query.in_chosen_languages(account) if account.chosen_languages.present?
       query.merge(account_silencing_filter(account))
     end
 
@@ -340,7 +384,8 @@ class Status < ApplicationRecord
 
     def account_silencing_filter(account)
       if account.silenced?
-        including_silenced_accounts
+        including_myself = left_outer_joins(:account).where(account_id: account.id).references(:accounts)
+        excluding_silenced_accounts.or(including_myself)
       else
         excluding_silenced_accounts
       end
@@ -348,6 +393,13 @@ class Status < ApplicationRecord
   end
 
   private
+
+  def update_status_stat!(attrs)
+    return if marked_for_destruction? || destroyed?
+
+    record = status_stat || build_status_stat
+    record.update(attrs)
+  end
 
   def store_uri
     update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
@@ -366,10 +418,6 @@ class Status < ApplicationRecord
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
     self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
-  end
-
-  def set_sensitivity
-    self.sensitive = sensitive || spoiler_text.present?
   end
 
   def set_conversation
@@ -409,13 +457,8 @@ class Status < ApplicationRecord
       Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
     end
 
-    return unless reblog?
-
-    if association(:reblog).loaded?
-      reblog.update_attribute(:reblogs_count, reblog.reblogs_count + 1)
-    else
-      Status.where(id: reblog_of_id).update_all('reblogs_count = COALESCE(reblogs_count, 0) + 1')
-    end
+    reblog&.increment_count!(:reblogs_count) if reblog?
+    thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
   def decrement_counter_caches
@@ -427,12 +470,7 @@ class Status < ApplicationRecord
       Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
     end
 
-    return unless reblog?
-
-    if association(:reblog).loaded?
-      reblog.update_attribute(:reblogs_count, [reblog.reblogs_count - 1, 0].max)
-    else
-      Status.where(id: reblog_of_id).update_all('reblogs_count = GREATEST(COALESCE(reblogs_count, 0) - 1, 0)')
-    end
+    reblog&.decrement_count!(:reblogs_count) if reblog?
+    thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 end

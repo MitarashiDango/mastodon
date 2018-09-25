@@ -37,9 +37,9 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-@connect(makeMapStateToProps)
+export default @connect(makeMapStateToProps)
 @injectIntl
-export default class ReportModal extends ImmutablePureComponent {
+class ReportModal extends ImmutablePureComponent {
 
   static propTypes = {
     isSubmitting: PropTypes.bool,
@@ -61,6 +61,12 @@ export default class ReportModal extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.props.dispatch(submitReport());
+  }
+
+  handleKeyDown = e => {
+    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+      this.handleSubmit();
+    }
   }
 
   componentDidMount () {
@@ -98,7 +104,9 @@ export default class ReportModal extends ImmutablePureComponent {
               placeholder={intl.formatMessage(messages.placeholder)}
               value={comment}
               onChange={this.handleCommentChange}
+              onKeyDown={this.handleKeyDown}
               disabled={isSubmitting}
+              autoFocus
             />
 
             {domain && (
