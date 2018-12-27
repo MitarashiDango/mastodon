@@ -29,7 +29,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
-gem 'cld3', '~> 3.2.0'
+gem 'cld3', '~> 3.2.3'
 gem 'devise', '~> 4.5'
 gem 'devise-two-factor', '~> 3.0'
 
@@ -40,7 +40,7 @@ end
 gem 'net-ldap', '~> 0.10'
 gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
-gem 'omniauth', '~> 1.2'
+gem 'omniauth', '~> 1.9'
 
 gem 'doorkeeper', '~> 5.0'
 gem 'fast_blank', '~> 1.0'
@@ -57,7 +57,7 @@ gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
-gem 'nokogiri', '~> 1.8'
+gem 'nokogiri', '~> 1.9'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.7'
 gem 'ostatus2', '~> 2.0'
@@ -114,7 +114,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
-  gem 'webmock', '~> 3.4'
+  gem 'webmock', '~> 3.5'
   gem 'parallel_tests', '~> 2.27'
 end
 
