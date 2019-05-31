@@ -18,7 +18,6 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
 import { displayMedia } from '../initial_state';
-import { is } from 'immutable';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -101,6 +100,7 @@ class Status extends ImmutablePureComponent {
 
   state = {
     showMedia: defaultMediaVisibility(this.props.status),
+    statusId: undefined,
   };
 
   // Track height changes we know about to compensate scrolling
@@ -116,9 +116,14 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (!is(nextProps.status, this.props.status) && nextProps.status) {
-      this.setState({ showMedia: defaultMediaVisibility(nextProps.status) });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
+      return {
+        showMedia: defaultMediaVisibility(nextProps.status),
+        statusId: nextProps.status.get('id'),
+      };
+    } else {
+      return null;
     }
   }
 
@@ -317,7 +322,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media = <PollContainer pollId={status.get('poll')} visible={!status.get('hidden')} />;
+      media = <PollContainer pollId={status.get('poll')} />;
     } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
