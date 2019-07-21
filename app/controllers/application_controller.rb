@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
   end
 
   def use_seamless_external_login?
@@ -138,11 +138,7 @@ class ApplicationController < ActionController::Base
   def respond_with_error(code)
     respond_to do |format|
       format.any  { head code }
-
-      format.html do
-        set_locale
-        render "errors/#{code}", layout: 'error', status: code
-      end
+      format.html { render "errors/#{code}", layout: 'error', status: code }
     end
   end
 
