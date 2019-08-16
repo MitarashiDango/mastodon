@@ -4534,7 +4534,8 @@ a.status-card.compact:hover {
   }
 }
 
-.report-modal__statuses {
+.report-modal__statuses,
+.focal-point-modal__content {
   flex: 1 1 auto;
   min-height: 20vh;
   max-height: 80vh;
@@ -4552,6 +4553,12 @@ a.status-card.compact:hover {
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
+  }
+}
+
+.focal-point-modal__content {
+  @media screen and (max-width: 480px) {
+    max-height: 40vh;
   }
 }
 
@@ -4749,10 +4756,10 @@ a.status-card.compact:hover {
 }
 
 .report-modal__target {
-  padding: 20px;
+  padding: 15px;
 
   .media-modal__close {
-    top: 19px;
+    top: 14px;
     right: 15px;
   }
 }
@@ -5757,6 +5764,11 @@ noscript {
   position: relative;
   cursor: move;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $base-shadow-color;
 
   img,
   video {
@@ -5792,7 +5804,12 @@ noscript {
     bottom: 10px;
     right: 10px;
     z-index: 2;
-    cursor: default;
+    cursor: move;
+    transition: opacity 0.1s ease;
+
+    &:hover {
+      opacity: 0.5;
+    }
 
     strong {
       color: $primary-text-color;
@@ -5805,6 +5822,17 @@ noscript {
     div {
       border-radius: 4px;
       box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    img,
+    video {
+      max-height: 100%;
+    }
+
+    &__preview {
+      display: none;
     }
   }
 }
@@ -6059,12 +6087,12 @@ noscript {
 
     &__current {
       flex: 0 0 auto;
-      width: 100px;
       font-size: 24px;
       line-height: 36px;
       font-weight: 500;
       text-align: right;
       padding-right: 15px;
+      margin-left: 5px;
       color: $secondary-text-color;
     }
 
