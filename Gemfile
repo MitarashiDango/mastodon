@@ -17,7 +17,7 @@ gem 'e2mmap', '~> 0.1.0'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.6'
+gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
 gem 'aws-sdk-s3', '~> 1.75', require: false
@@ -61,7 +61,6 @@ gem 'health_check', git: 'https://github.com/ianheggie/health_check', ref: '0b79
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
-gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
 gem 'httplog', '~> 1.4.3'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
