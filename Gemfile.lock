@@ -415,9 +415,9 @@ GEM
     puma (3.11.4)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (2.0.4)
-    rack-attack (5.2.0)
-      rack
+    rack (2.2.3)
+    rack-attack (6.3.1)
+      rack (>= 1.0, < 3)
     rack-cors (1.0.2)
     rack-protection (2.0.1)
       rack
@@ -724,7 +724,7 @@ DEPENDENCIES
   pry-rails (~> 0.3)
   puma (~> 3.11)
   pundit (~> 1.1)
-  rack-attack (~> 5.2)
+  rack-attack (~> 6.3)
   rack-cors (~> 1.0)
   rack-timeout (~> 0.4)
   rails (~> 5.2.0)
