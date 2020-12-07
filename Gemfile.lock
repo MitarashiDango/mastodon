@@ -145,7 +145,6 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
-    colorize (0.8.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crack (0.4.3)
@@ -266,9 +265,9 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.1.0)
     http_accept_language (2.1.1)
-    httplog (1.0.2)
-      colorize (~> 0.8)
+    httplog (1.4.3)
       rack (>= 1.0)
+      rainbow (>= 2.0.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.21)
@@ -415,7 +414,7 @@ GEM
     puma (3.11.4)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (2.0.4)
+    rack (2.2.3)
     rack-attack (5.2.0)
       rack
     rack-cors (1.0.2)
@@ -688,7 +687,7 @@ DEPENDENCIES
   http (~> 3.2)
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
-  httplog (~> 1.0)
+  httplog (~> 1.4)
   i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
