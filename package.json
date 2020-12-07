@@ -119,7 +119,7 @@
     "uws": "^8.14.0",
     "webpack": "^3.9.1",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-manifest-plugin": "^1.2.1",
+    "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.1.1",
     "websocket.js": "^0.1.12",
     "whatwg-url": "^6.4.1"
