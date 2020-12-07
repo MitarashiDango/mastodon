@@ -99,7 +99,7 @@
     "react-router-scroll-4": "^1.0.0-beta.1",
     "react-sparklines": "^1.7.0",
     "react-swipeable-views": "^0.12.3",
-    "react-textarea-autosize": "^5.2.1",
+    "react-textarea-autosize": "^7.1.2",
     "react-toggle": "^4.0.1",
     "redis": "^2.7.1",
     "redux": "^3.7.1",
