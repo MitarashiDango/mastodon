@@ -9,7 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
 
 gem 'hamlit-rails', '~> 0.2'
-gem 'pg', '~> 1.0'
+gem 'pg', '~> 1.2'
 gem 'pghero', '~> 2.1'
 gem 'dotenv-rails', '~> 2.2', '< 2.3'
 
