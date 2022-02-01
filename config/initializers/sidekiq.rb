@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/sidekiq_error_handler'
-
 Sidekiq.configure_server do |config|
   config.redis = REDIS_SIDEKIQ_PARAMS
 

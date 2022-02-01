@@ -13,7 +13,6 @@ export default class Dimension extends React.PureComponent {
     end_at: PropTypes.string.isRequired,
     limit: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
-    params: PropTypes.object,
   };
 
   state = {
@@ -22,9 +21,9 @@ export default class Dimension extends React.PureComponent {
   };
 
   componentDidMount () {
-    const { start_at, end_at, dimension, limit, params } = this.props;
+    const { start_at, end_at, dimension, limit } = this.props;
 
-    api().post('/api/v1/admin/dimensions', { keys: [dimension], start_at, end_at, limit, [dimension]: params }).then(res => {
+    api().post('/api/v1/admin/dimensions', { keys: [dimension], start_at, end_at, limit }).then(res => {
       this.setState({
         loading: false,
         data: res.data,

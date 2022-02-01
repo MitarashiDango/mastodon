@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Dimension::BaseDimension
-  def self.with_params?
-    false
-  end
-
-  def initialize(start_at, end_at, limit, params)
+  def initialize(start_at, end_at, limit)
     @start_at = start_at&.to_datetime
     @end_at   = end_at&.to_datetime
     @limit    = limit&.to_i
-    @params   = params
   end
 
   def key
@@ -31,10 +26,6 @@ class Admin::Metrics::Dimension::BaseDimension
   protected
 
   def time_period
-    (@start_at..@end_at)
-  end
-
-  def params
-    raise NotImplementedError
+    (@start_at...@end_at)
   end
 end
