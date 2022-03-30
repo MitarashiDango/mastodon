@@ -5,6 +5,7 @@ require 'singleton'
 class FeedManager
   include Singleton
   include Redisable
+  include FormattingHelper
 
   MAX_ITEMS = 4000
 
@@ -444,7 +445,7 @@ class FeedManager
     status         = status.reblog if status.reblog?
 
     combined_text = [
-      Formatter.instance.plaintext(status),
+      extract_status_plain_text(status),
       status.spoiler_text,
       status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
       status.ordered_media_attachments.map(&:description).join("\n\n"),
