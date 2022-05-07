@@ -517,6 +517,7 @@ es-MX:
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
+        failing: Fallando
         restart: Reiniciar entrega
         stop: Detener entrega
         unavailable: No disponible
@@ -801,6 +802,7 @@ es-MX:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado a %{yesterday} ayer
+      only_allowed: Sólo permitido
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este editor pueden ser tendencia
@@ -842,6 +844,7 @@ es-MX:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
       title: Tendencias
+      trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
@@ -1235,6 +1238,9 @@ es-MX:
       new_followers_summary:
         one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
         other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
+      subject:
+        one: "1 nueva notificación desde tu última visita 🐘"
+        other: "%{count} nuevas notificaciones desde tu última visita 🐘"
       title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
