@@ -75,6 +75,14 @@
       {
         "defaultMessage": "Unmute notifications from @{name}",
         "id": "account.unmute_notifications"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -282,7 +290,11 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} talking",
+        "defaultMessage": "Total volume in the last {days, plural, one {day} other {{days} days}}",
+        "id": "hashtag.total_volume"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {{days} days}}",
         "id": "trends.counter_by_accounts"
       }
     ],
@@ -605,6 +617,10 @@
         "id": "status.copy"
       },
       {
+        "defaultMessage": "Hide toot",
+        "id": "status.hide"
+      },
+      {
         "defaultMessage": "Block domain {domain}",
         "id": "account.block_domain"
       },
@@ -669,6 +685,10 @@
       {
         "defaultMessage": "Filtered",
         "id": "status.filtered"
+      },
+      {
+        "defaultMessage": "Show anyway",
+        "id": "status.show_filter_reason"
       },
       {
         "defaultMessage": "Pinned post",
@@ -786,6 +806,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This profile has been hidden by the moderators of your server.",
+        "id": "limited_account_hint.title"
+      },
+      {
+        "defaultMessage": "Show profile anyway",
+        "id": "limited_account_hint.action"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/components/limited_account_hint.json"
   },
   {
     "descriptors": [
@@ -1045,6 +1078,18 @@
       {
         "defaultMessage": "Download file",
         "id": "video.download"
+      },
+      {
+        "defaultMessage": "Hide audio",
+        "id": "audio.hide"
+      },
+      {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Media hidden",
+        "id": "status.media_hidden"
       }
     ],
     "path": "app/javascript/mastodon/features/audio/index.json"
@@ -1161,7 +1206,7 @@
         "id": "compose_form.spoiler_placeholder"
       },
       {
-        "defaultMessage": "Toot",
+        "defaultMessage": "Publish",
         "id": "compose_form.publish"
       },
       {
@@ -1235,6 +1280,23 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/emoji_picker_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Change language",
+        "id": "compose.language.change"
+      },
+      {
+        "defaultMessage": "Search languages...",
+        "id": "compose.language.search"
+      },
+      {
+        "defaultMessage": "Clear",
+        "id": "emoji_button.clear"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/language_dropdown.json"
   },
   {
     "descriptors": [
@@ -1889,6 +1951,10 @@
         "id": "timeline_hint.resources.followers"
       },
       {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -1904,6 +1970,10 @@
       {
         "defaultMessage": "Follows",
         "id": "timeline_hint.resources.follows"
+      },
+      {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
       },
       {
         "defaultMessage": "Profile unavailable",
@@ -2066,6 +2136,14 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Follow hashtag",
+        "id": "hashtag.follow"
+      },
+      {
+        "defaultMessage": "Unfollow hashtag",
+        "id": "hashtag.unfollow"
+      },
       {
         "defaultMessage": "or {additional}",
         "id": "hashtag.column_header.tag_mode.any"
@@ -2486,6 +2564,10 @@
       {
         "defaultMessage": "New sign-ups:",
         "id": "notifications.column_settings.admin.sign_up"
+      },
+      {
+        "defaultMessage": "New reports:",
+        "id": "notifications.column_settings.admin.report"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -2580,6 +2662,10 @@
         "id": "notification.admin.sign_up"
       },
       {
+        "defaultMessage": "{name} reported {target}",
+        "id": "notification.admin.report"
+      },
+      {
         "defaultMessage": "{name} has requested to follow you",
         "id": "notification.follow_request"
       }
@@ -2606,6 +2692,31 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notifications_permission_banner.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Open report",
+        "id": "report_notification.open"
+      },
+      {
+        "defaultMessage": "Other",
+        "id": "report_notification.categories.other"
+      },
+      {
+        "defaultMessage": "Spam",
+        "id": "report_notification.categories.spam"
+      },
+      {
+        "defaultMessage": "Rule violation",
+        "id": "report_notification.categories.violation"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{count} post} other {{count} posts}} attached",
+        "id": "report_notification.attached_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/report.json"
   },
   {
     "descriptors": [
@@ -3248,7 +3359,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Toot",
+        "defaultMessage": "Publish",
         "id": "compose_form.publish"
       }
     ],
