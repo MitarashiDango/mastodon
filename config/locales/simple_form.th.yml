@@ -85,6 +85,7 @@ th:
         ip: ป้อนที่อยู่ IPv4 หรือ IPv6 คุณสามารถปิดกั้นทั้งช่วงได้โดยใช้ไวยากรณ์ CIDR ระวังอย่าล็อคตัวคุณเองออก!
         severities:
           no_access: ปิดกั้นการเข้าถึงทรัพยากรทั้งหมด
+          sign_up_block: จะไม่สามารถทำการลงทะเบียนใหม่
           sign_up_requires_approval: การลงทะเบียนใหม่จะต้องมีการอนุมัติของคุณ
         severity: เลือกสิ่งที่จะเกิดขึ้นกับคำขอจาก IP นี้
       rule:
@@ -152,7 +153,7 @@ th:
         display_name: ชื่อที่แสดง
         email: ที่อยู่อีเมล
         expires_in: หมดอายุหลังจาก
-        fields: ข้อมูลเมตาโปรไฟล์
+        fields: ข้อมูลอภิพันธุ์โปรไฟล์
         header: ส่วนหัว
         honeypot: "%{label} (ไม่ต้องกรอก)"
         inbox_url: URL กล่องขาเข้าแบบรีเลย์
@@ -206,6 +207,26 @@ th:
         actions:
           hide: ซ่อนอย่างสมบูรณ์
           warn: ซ่อนด้วยคำเตือน
+      form_admin_settings:
+        backups_retention_period: ระยะเวลาการเก็บรักษาการเก็บถาวรผู้ใช้
+        content_cache_retention_period: ระยะเวลาการเก็บรักษาแคชเนื้อหา
+        custom_css: CSS ที่กำหนดเอง
+        mascot: มาสคอตที่กำหนดเอง (ดั้งเดิม)
+        media_cache_retention_period: ระยะเวลาการเก็บรักษาแคชสื่อ
+        profile_directory: เปิดใช้งานไดเรกทอรีโปรไฟล์
+        registrations_mode: ผู้ที่สามารถลงทะเบียน
+        require_invite_text: ต้องมีเหตุผลที่จะเข้าร่วม
+        show_domain_blocks: แสดงการปิดกั้นโดเมน
+        site_contact_email: อีเมลสำหรับติดต่อ
+        site_contact_username: ชื่อผู้ใช้สำหรับติดต่อ
+        site_extended_description: คำอธิบายแบบขยาย
+        site_short_description: คำอธิบายเซิร์ฟเวอร์
+        site_terms: นโยบายความเป็นส่วนตัว
+        site_title: ชื่อเซิร์ฟเวอร์
+        theme: ชุดรูปแบบเริ่มต้น
+        thumbnail: ภาพขนาดย่อเซิร์ฟเวอร์
+        trendable_by_default: อนุญาตแนวโน้มโดยไม่มีการตรวจทานล่วงหน้า
+        trends: เปิดใช้งานแนวโน้ม
       interactions:
         must_be_follower: ปิดกั้นการแจ้งเตือนจากผู้ที่ไม่ใช่ผู้ติดตาม
         must_be_following: ปิดกั้นการแจ้งเตือนจากผู้คนที่คุณไม่ได้ติดตาม
@@ -219,6 +240,7 @@ th:
         ip: IP
         severities:
           no_access: ปิดกั้นการเข้าถึง
+          sign_up_block: ปิดกั้นการลงทะเบียน
           sign_up_requires_approval: จำกัดการลงทะเบียน
         severity: กฎ
       notification_emails:
@@ -251,6 +273,7 @@ th:
         events: เหตุการณ์ที่เปิดใช้งาน
         url: URL ปลายทาง
     'no': ไม่
+    not_recommended: ไม่แนะนำ
     recommended: แนะนำ
     required:
       mark: "*"

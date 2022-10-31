@@ -13,6 +13,10 @@ spec:
   template:
     metadata:
       name: {{ include "mastodon.fullname" . }}-create-admin
+    {{- with .Values.jobAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
     spec:
       restartPolicy: Never
       {{- if (not .Values.mastodon.s3.enabled) }}
@@ -62,7 +66,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ template "mastodon.postgresql.secretName" . }}
-                  key: password
+                  key: postgres-password
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:

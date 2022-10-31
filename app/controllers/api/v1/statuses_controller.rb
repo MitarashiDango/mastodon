@@ -65,6 +65,7 @@ class Api::V1::StatusesController < Api::BaseController
       text: status_params[:status],
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
+      language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
       poll: status_params[:poll]
     )
@@ -77,6 +78,7 @@ class Api::V1::StatusesController < Api::BaseController
     authorize @status, :destroy?
 
     @status.discard
+    StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 
