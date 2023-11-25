@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
+  include RegistrationHelper
   include RegistrationSpamConcern
   include TurnstileConcern
 
@@ -20,6 +21,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :add_csp_for_turnstile, only: [:new, :create]
   before_action :check_turnstile, if: :turnstile_enabled?, only: [:create]
 
+  skip_before_action :check_self_destruct!, only: [:edit, :update]
   skip_before_action :require_functional!, only: [:edit, :update]
 
   def new
@@ -84,19 +86,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations? || ip_blocked?
-  end
-
-  def allowed_registrations?
-    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
-  end
-
-  def ip_blocked?
-    IpBlock.where(severity: :sign_up_block).where('ip >>= ?', request.remote_ip.to_s).exists?
+    redirect_to root_path unless allowed_registration?(request.remote_ip, @invite)
   end
 
   def invite_code
