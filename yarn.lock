@@ -2355,7 +2355,7 @@ __metadata:
     babel-plugin-preval: "npm:^5.1.0"
     babel-plugin-transform-react-remove-prop-types: "npm:^0.4.24"
     blurhash: "npm:^2.0.5"
-    chart.js: "npm:^4.2.1"
+    chart.js: "npm:~4.2.1"
     chartjs-adapter-moment: "npm:^1.0.1"
     circular-dependency-plugin: "npm:^5.2.2"
     classnames: "npm:^2.3.2"
@@ -5450,12 +5450,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chart.js@npm:^4.2.1":
-  version: 4.4.0
-  resolution: "chart.js@npm:4.4.0"
+"chart.js@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "chart.js@npm:4.2.1"
   dependencies:
     "@kurkle/color": "npm:^0.3.0"
-  checksum: a81a65ef4767c79b4645703a08947811966d231824868c2483172a6a2dffcb269fae32a3ffd692cb0dee6ff982d4b15e2cfb1d56373f0f0d3ea51d7e9b7b96cd
+  checksum: 8d6aeece5fe1537b04065d1695d2aee70f0347c91c53644acb702fd3b17465eeaf0723ee1b1ff2aec1ae86b69167d390e167bfc865fdbcbd47b7f2ea1062c1b3
   languageName: node
   linkType: hard
 
