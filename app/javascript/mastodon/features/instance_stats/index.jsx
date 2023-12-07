@@ -1,4 +1,4 @@
-import { Chart as ChartJS, registerables } from 'chart.js/auto';
+import { Chart as ChartJS, registerables } from 'chart.js';
 import 'chartjs-adapter-moment';
 import { fetchInstanceStats } from 'mastodon/actions/instance_stats';
 import Column from 'mastodon/components/column';

@@ -5,6 +5,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import classnames from 'classnames';
 import Permalink from './permalink';
+import { withRouter } from "react-router";
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
