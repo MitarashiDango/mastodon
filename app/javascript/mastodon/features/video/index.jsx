@@ -21,7 +21,7 @@ import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { playerSettings } from 'mastodon/settings';
 
-import { displayMedia, useBlurhash } from '../../initial_state';
+import { cropAttachmentThumbnailsOnTimeline, displayMedia, useBlurhash } from '../../initial_state';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
@@ -123,6 +123,7 @@ class Video extends PureComponent {
     onOpenVideo: PropTypes.func,
     onCloseVideo: PropTypes.func,
     detailed: PropTypes.bool,
+    inline: PropTypes.bool,
     editable: PropTypes.bool,
     alwaysVisible: PropTypes.bool,
     visible: PropTypes.bool,
@@ -534,10 +535,16 @@ class Video extends PureComponent {
   }
 
   render () {
-    const { preview, src, aspectRatio, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
+    const { preview, src, inline, aspectRatio, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
     const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
+    const playerStyle = { width: '100%' };
+
+    if (inline && cropAttachmentThumbnailsOnTimeline) {
+      playerStyle.height = '100%';
+      playerStyle.objectFit = 'contain';
+    }
 
     let preload;
 
@@ -596,7 +603,7 @@ class Video extends PureComponent {
             onLoadedData={this.handleLoadedData}
             onProgress={this.handleProgress}
             onVolumeChange={this.handleVolumeChange}
-            style={{ width: '100%' }}
+            style={playerStyle}
           />}
 
           <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>

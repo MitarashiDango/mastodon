@@ -22,7 +22,7 @@ import Card from '../features/status/components/card';
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
-import { displayMedia } from '../initial_state';
+import { cropAttachmentThumbnailsOnTimeline, displayMedia } from '../initial_state';
 
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
@@ -198,7 +198,7 @@ class Status extends ImmutablePureComponent {
     const attachments = this._properStatus().get('media_attachments');
 
     if (attachments.getIn([0, 'type']) === 'video') {
-      return `${attachments.getIn([0, 'meta', 'original', 'width'])} / ${attachments.getIn([0, 'meta', 'original', 'height'])}`;
+      return cropAttachmentThumbnailsOnTimeline ? '16 / 9' : `${attachments.getIn([0, 'meta', 'original', 'width'])} / ${attachments.getIn([0, 'meta', 'original', 'height'])}`;
     } else if (attachments.getIn([0, 'type']) === 'audio') {
       return '16 / 9';
     } else {
@@ -489,11 +489,12 @@ class Status extends ImmutablePureComponent {
               <Component
                 preview={attachment.get('preview_url')}
                 frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
-                aspectRatio={`${attachment.getIn(['meta', 'original', 'width'])} / ${attachment.getIn(['meta', 'original', 'height'])}`}
+                aspectRatio={cropAttachmentThumbnailsOnTimeline ? '16 / 9' : `${attachment.getIn(['meta', 'original', 'width'])} / ${attachment.getIn(['meta', 'original', 'height'])}`}
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
                 alt={description}
                 lang={language}
+                inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
                 deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}

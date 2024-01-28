@@ -103,6 +103,10 @@ module User::HasSettings
     settings['default_privacy'] || (account.locked? ? 'private' : 'public')
   end
 
+  def setting_crop_attachment_thumbnails_on_timeline
+    settings['web.crop_attachment_thumbnails_on_timeline']
+  end
+
   def allows_report_emails?
     settings['notification_emails.report']
   end

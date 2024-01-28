@@ -182,6 +182,7 @@ ja:
         confirm_new_password: 新しいパスワード（確認用）
         confirm_password: パスワード（確認用）
         context: 除外対象
+        crop_attachment_thumbnails_on_timeline: タイムライン上に表示されるメディアのサムネイル画像を切り抜き表示する
         current_password: 現在のパスワード
         data: データ
         display_name: 表示名

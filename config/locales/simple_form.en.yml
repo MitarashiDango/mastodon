@@ -182,6 +182,7 @@ en:
         confirm_new_password: Confirm new password
         confirm_password: Confirm password
         context: Filter contexts
+        crop_attachment_thumbnails_on_timeline: Crop attachment thumbnails on timeline
         current_password: Current password
         data: Data
         display_name: Display name

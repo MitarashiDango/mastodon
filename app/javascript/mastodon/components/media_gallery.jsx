@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 
-import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
+import { autoPlayGif, cropAttachmentThumbnailsOnTimeline, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 
@@ -221,6 +221,7 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    standalone: PropTypes.bool,
   };
 
   state = {
@@ -291,7 +292,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, defaultWidth, autoplay } = this.props;
+    const { media, lang, intl, sensitive, defaultWidth, autoplay, standalone } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -300,7 +301,11 @@ class MediaGallery extends PureComponent {
     const style = {};
 
     if (this.isFullSizeEligible()) {
-      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+      if (!standalone && cropAttachmentThumbnailsOnTimeline) {
+        style.aspectRatio = '16 / 9';
+      } else {
+        style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+      }
     } else {
       style.aspectRatio = '3 / 2';
     }
