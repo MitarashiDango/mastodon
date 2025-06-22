@@ -36,7 +36,7 @@ import { Search } from 'mastodon/features/compose/components/search';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
-import { timelinePreview, trendsEnabled, me } from 'mastodon/initial_state';
+import { timelinePreview, trendsEnabled, me, reverseNav } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -224,7 +224,8 @@ export const NavigationPanel: React.FC = () => {
 
   const isLtrDir = getComputedStyle(document.body).direction !== 'rtl';
 
-  const OPEN_MENU_OFFSET = isLtrDir ? MENU_WIDTH : -MENU_WIDTH;
+  const OPEN_MENU_OFFSET = reverseNav ?
+    (isLtrDir ?  -MENU_WIDTH : MENU_WIDTH) : (isLtrDir ? MENU_WIDTH : -MENU_WIDTH);
 
   const [{ x }, spring] = useSpring(
     () => ({
@@ -233,7 +234,7 @@ export const NavigationPanel: React.FC = () => {
         x({ value }: { value: number }) {
           if (value === 0) {
             dispatch(openNavigation());
-          } else if (isLtrDir ? value > 0 : value < 0) {
+          } else if ((reverseNav && isLtrDir ? value < 0 : value > 0) || (!reverseNav && isLtrDir ? value > 0 : value < 0)) {
             dispatch(closeNavigation());
           }
         },
@@ -252,15 +253,21 @@ export const NavigationPanel: React.FC = () => {
     }) => {
       const logicalXDirection = isLtrDir ? xDirection : -xDirection;
       const logicalXOffset = isLtrDir ? xOffset : -xOffset;
-      const hasReachedDragThreshold = logicalXOffset < -70;
+      const hasReachedDragThreshold = reverseNav ? logicalXOffset > 70 : logicalXOffset < -70;
 
       if (hasReachedDragThreshold) {
         cancel();
       }
 
       if (last) {
-        const isAboveOpenThreshold = logicalXOffset > MENU_WIDTH / 2;
-        const isQuickFlick = xVelocity > 0.5 && logicalXDirection > 0;
+        const isAboveOpenThreshold = reverseNav ?
+          logicalXOffset < -MENU_WIDTH / 2 : logicalXOffset > MENU_WIDTH / 2;
+        const isQuickFlick = reverseNav ?
+          xVelocity > 0.5 && logicalXDirection < 0 : xVelocity > 0.5 && logicalXDirection > 0;
+        // const isAboveOpenThreshold = reverseNav ?
+        //   logicalXOffset > -MENU_WIDTH / 2 : logicalXOffset > MENU_WIDTH / 2;
+        // const isQuickFlick = reverseNav ?
+        //   xVelocity > 0.5 && logicalXDirection < 0 : xVelocity > 0.5 && logicalXDirection > 0;
 
         if (isAboveOpenThreshold || isQuickFlick) {
           void spring.start({ x: OPEN_MENU_OFFSET });
@@ -274,7 +281,7 @@ export const NavigationPanel: React.FC = () => {
     {
       from: () => [x.get(), 0],
       filterTaps: true,
-      bounds: isLtrDir ? { left: 0 } : { right: 0 },
+      bounds: reverseNav ? (isLtrDir ? { right: 0 } : { left: 0 }) : (isLtrDir ? { left: 0 } : { right: 0 }),
       rubberband: true,
     },
   );

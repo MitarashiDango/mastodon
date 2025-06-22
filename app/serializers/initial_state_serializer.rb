@@ -121,6 +121,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       wider_column: object_account_user.setting_wider_column,
       hide_translate_button: object_account_user.setting_hide_translate_button,
       crop_attachment_thumbnails_on_timeline: object_account_user.setting_crop_attachment_thumbnails_on_timeline,
+      reverse_nav: object_account_user.setting_reverse_nav,
     }
   end
 
