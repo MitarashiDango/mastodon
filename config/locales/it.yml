@@ -578,6 +578,13 @@ it:
         all: Tutto
         limited: Limitato
         title: Moderazione
+      moderation_notes:
+        create: Aggiungi Nota di Moderazione
+        created_msg: Nota di moderazione dell'istanza creata con successo!
+        description_html: Visualizza e lascia note per altri moderatori e per il futuro te
+        destroyed_msg: Nota di moderazione dell'istanza eliminata con successo!
+        placeholder: Informazioni su questa istanza, azioni compiute, o qualsiasi cosa possa aiutarti a moderare questa istanza in futuro.
+        title: Note di Moderazione
       private_comment: Commento privato
       public_comment: Commento pubblico
       purge: Ripulisci
@@ -2070,7 +2077,6 @@ it:
       post_action: Scrivi
       post_step: Salutate il mondo con testo, foto, video o sondaggi.
       post_title: Scrivi il tuo primo post
-      share_action: Condividi
       share_step: Fai sapere ai tuoi amici come trovarti su Mastodon.
       share_title: Condividi il tuo profilo Mastodon
       sign_in_action: Accedi

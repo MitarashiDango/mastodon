@@ -41,6 +41,7 @@ class UserSettings
     setting :mod_reverse_nav, default: false
     setting :hide_translate_button, default: false
     setting :crop_attachment_thumbnails_on_timeline, default: false
+    setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
   end
 
   namespace :notification_emails do

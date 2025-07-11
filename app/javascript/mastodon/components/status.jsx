@@ -303,7 +303,11 @@ class Status extends ImmutablePureComponent {
     if (newTab) {
       window.open(path, '_blank', 'noopener');
     } else {
-      history.push(path);
+      if (history.location.pathname.replace('/deck/', '/') === path) {
+        history.replace(path);
+      } else {
+        history.push(path);
+      }
     }
   };
 
@@ -548,13 +552,13 @@ class Status extends ImmutablePureComponent {
           <div
             className={
               classNames('status', `status-${status.get('visibility')}`,
-              {
-                'status-reply': !!status.get('in_reply_to_id'),
-                'status--in-thread': !!rootId,
-                'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
-                'status--is-quote': isQuotedPost,
-                'status--has-quote': !!status.get('quote'),
-              })
+                {
+                  'status-reply': !!status.get('in_reply_to_id'),
+                  'status--in-thread': !!rootId,
+                  'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
+                  'status--is-quote': isQuotedPost,
+                  'status--has-quote': !!status.get('quote'),
+                })
             }
             data-id={status.get('id')}
           >
@@ -591,10 +595,10 @@ class Status extends ImmutablePureComponent {
                     {...statusContentProps}
                   />
 
-                  {children}
-
                   {media}
                   {hashtagBar}
+
+                  {children}
                 </>
               )}
 

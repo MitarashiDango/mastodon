@@ -1,14 +1,15 @@
 import path from 'node:path';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import { PluginOption } from 'vite';
-import svgr from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
-import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
+import RailsPlugin from 'vite-plugin-rails';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import legacy from '@vitejs/plugin-legacy';
 
 import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -16,6 +17,7 @@ import postcssPresetEnv from 'postcss-preset-env';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
+import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
@@ -77,8 +79,11 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         },
       },
     },
+    worker: {
+      format: 'es',
+    },
     plugins: [
-      tsconfigPaths(),
+      tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
       RailsPlugin({
         compress: mode === 'production' && command === 'build',
         sri: {
@@ -90,6 +95,21 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         babel: {
           plugins: ['formatjs', 'transform-react-remove-prop-types'],
         },
+      }),
+      viteStaticCopy({
+        targets: [
+          {
+            src: path.resolve(
+              __dirname,
+              'node_modules/emojibase-data/**/compact.json',
+            ),
+            dest: 'emoji',
+            rename(_name, ext, dir) {
+              const locale = path.basename(path.dirname(dir));
+              return `${locale}.${ext}`;
+            },
+          },
+        ],
       }),
       MastodonServiceWorkerLocales(),
       MastodonEmojiCompressed(),
@@ -125,6 +145,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
       !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
+      MastodonNameLookup(),
     ],
   } satisfies UserConfig;
 };
