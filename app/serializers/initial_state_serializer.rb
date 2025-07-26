@@ -5,7 +5,7 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
-             :languages
+             :languages, :features
 
   attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && SoftwareUpdate.check_enabled? }
 
@@ -72,6 +72,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
   end
 
+  def features
+    Mastodon::Feature.enabled_features
+  end
+
   private
 
   def default_meta_store
@@ -122,6 +126,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       hide_translate_button: object_account_user.setting_hide_translate_button,
       crop_attachment_thumbnails_on_timeline: object_account_user.setting_crop_attachment_thumbnails_on_timeline,
       reverse_nav: object_account_user.setting_reverse_nav,
+      emoji_style: object_account_user.settings['web.emoji_style'],
     }
   end
 

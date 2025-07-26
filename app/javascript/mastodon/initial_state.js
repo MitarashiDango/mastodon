@@ -1,6 +1,5 @@
 // @ts-check
 
-
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
  */
@@ -50,6 +49,7 @@
  * @property {boolean} wider_column
  * @property {string} status_page_url
  * @property {boolean} terms_of_service_enabled
+ * @property {string?} emoji_style
  */
 
 /**
@@ -68,6 +68,7 @@
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {Role?} role
+ * @property {string[]} features
  */
 
 const element = document.getElementById('initial-state');
@@ -101,6 +102,7 @@ export const disableHoverCards = getMeta('disable_hover_cards');
 export const disabledAccountId = getMeta('disabled_account_id');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
+export const emojiStyle = getMeta('emoji_style') || 'auto';
 export const expandSpoilers = getMeta('expand_spoilers');
 export const forceSingleColumn = !getMeta('advanced_layout');
 export const hideTranslateButton = getMeta('hide_translate_button');

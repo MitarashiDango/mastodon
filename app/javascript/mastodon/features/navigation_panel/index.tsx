@@ -439,6 +439,7 @@ export const CollapsibleNavigationPanel: React.FC = () => {
       filterTaps: true,
       bounds: reverseNav ? (isLtrDir ? { right: 0 } : { left: 0 }) : (isLtrDir ? { left: 0 } : { right: 0 }),
       rubberband: true,
+      enabled: openable,
     },
   );
 
