@@ -725,6 +725,7 @@
   "privacy.quote.disabled": "{visibility}、引用不可",
   "privacy.quote.limited": "{visibility}、引用は制限",
   "privacy.unlisted.additional": "「公開」とほとんど同じですが、リアルタイムフィードやハッシュタグ、探索機能、Mastodon検索などに投稿が表示されない点で「公開」と異なります。また、アカウント設定で投稿の検索や表示を許可している場合でも、この公開範囲を設定した投稿は前述の機能には表示されません。",
+  "privacy.unlisted.long": "Mastodon の検索結果やトレンド、公開タイムラインには表示されない",
   "privacy.unlisted.short": "ひかえめな公開",
   "privacy_policy.last_updated": "{date}に更新",
   "privacy_policy.title": "プライバシーポリシー",
