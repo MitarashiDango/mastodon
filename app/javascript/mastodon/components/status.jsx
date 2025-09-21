@@ -30,7 +30,7 @@ import { cropAttachmentThumbnailsOnTimeline, displayMedia } from '../initial_sta
 
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
-import { DisplayName } from './display_name';
+import { LinkedDisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
 import { RelativeTimestamp } from './relative_timestamp';
 import StatusActionBar from './status_action_bar';
@@ -411,12 +411,20 @@ class Status extends ImmutablePureComponent {
     const matchedFilters = status.get('matched_filters');
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
-      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
+      const name = (
+        <LinkedDisplayName
+          displayProps={{
+            account: status.get('account'),
+            variant: 'simple'
+          }}
+          className='status__display-name muted'
+        />
+      )
 
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend__icon'><Icon id='retweet' icon={RepeatIcon} /></div>
-          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <Permalink data-id={status.getIn(['account', 'id'])} data-hover-card-account={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} to={`/@${status.getIn(['account', 'acct'])}`} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></Permalink> }} />
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name }} />
         </div>
       );
 
@@ -572,13 +580,11 @@ class Status extends ImmutablePureComponent {
                 <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
               </Permalink>
 
-              <Permalink to={`/@${status.getIn(['account', 'acct'])}`} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} data-hover-card-account={status.getIn(['account', 'id'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
+              <LinkedDisplayName displayProps={{account: status.get('account')}} className='status__display-name'>
                 <div className='status__avatar'>
                   {statusAvatar}
                 </div>
-
-                <DisplayName account={status.get('account')} />
-              </Permalink>
+              </LinkedDisplayName>
 
               {isQuotedPost && !!this.props.onQuoteCancel &&  (
                 <IconButton
