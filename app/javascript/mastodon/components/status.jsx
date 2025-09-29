@@ -120,6 +120,7 @@ class Status extends ImmutablePureComponent {
     unread: PropTypes.bool,
     showThread: PropTypes.bool,
     isQuotedPost: PropTypes.bool,
+    shouldHighlightOnMount: PropTypes.bool, 
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
     cacheMediaWidth: PropTypes.func,
@@ -563,13 +564,14 @@ class Status extends ImmutablePureComponent {
           <div
             className={
               classNames('status', `status-${status.get('visibility')}`,
-                {
-                  'status-reply': !!status.get('in_reply_to_id'),
-                  'status--in-thread': !!rootId,
-                  'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
-                  'status--is-quote': isQuotedPost,
-                  'status--has-quote': !!status.get('quote'),
-                })
+              {
+                'status-reply': !!status.get('in_reply_to_id'),
+                'status--in-thread': !!rootId,
+                'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
+                'status--is-quote': isQuotedPost,
+                'status--has-quote': !!status.get('quote'),
+                'status--highlighted-entry': this.props.shouldHighlightOnMount,
+              })
             }
             data-id={status.get('id')}
           >
