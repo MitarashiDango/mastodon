@@ -36,7 +36,13 @@ import { Search } from 'mastodon/features/compose/components/search';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
-import { timelinePreview, trendsEnabled, me, reverseNav } from 'mastodon/initial_state';
+import {
+  localLiveFeedAccess,
+  remoteLiveFeedAccess,
+  trendsEnabled,
+  me,
+  reverseNav,
+} from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -258,10 +264,16 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           />
         )}
 
-        {(signedIn || timelinePreview) && (
+        {(signedIn ||
+          localLiveFeedAccess === 'public' ||
+          remoteLiveFeedAccess === 'public') && (
           <ColumnLink
             transparent
-            to='/public/local'
+            to={
+              signedIn || localLiveFeedAccess === 'public'
+                ? '/public/local'
+                : '/public/remote'
+            }
             icon='globe'
             iconComponent={PublicIcon}
             isActive={isFirehoseActive}
