@@ -1151,8 +1151,11 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
+    advanced_settings: 高度な設定
     optional_feature: このサーバー独自の追加機能
-    animations_and_accessibility: アニメーションとアクセシビリティー
+    animations_and_accessibility: アニメーションとアクセシビリティ
+    boosting_preferences: ブーストの設定
+    boosting_preferences_info_html: "<strong>メモ:</strong> 設定にかかわらず、 %{icon} ブーストアイコンを <kbd>Shift</kbd> キーを押しながら <kbd>左クリック</kbd> することで、即座にブーストすることができます。"
     discovery: 見つける
     localization:
       body: Mastodonは有志によって翻訳されています。

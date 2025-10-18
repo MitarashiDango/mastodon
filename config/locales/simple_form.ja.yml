@@ -58,12 +58,14 @@ ja:
         setting_advanced_layout: Mastodon を複数カラムのレイアウトにすることで、タイムラインや通知、任意の3カラム目を表示できます。画面の小さい端末ではおすすめしません。
         setting_aggregate_reblogs: 最近ブーストされた投稿が新たにブーストされても表示しません (設定後受信したものにのみ影響)
         setting_always_send_emails: 通常、Mastodon からメール通知は行われません。
+        setting_boost_modal: ブーストする前に、公開範囲を変更するためのダイアログを表示します
         setting_default_quote_policy_private: Mastodon で作成されたフォロワー限定の投稿は、誰からも引用することが出来ません。
         setting_default_quote_policy_unlisted: 誰かがあなたの投稿を引用しても、その投稿もまたトレンドタイムラインには表示されなくなります。
         setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: メディアを常に隠す
         setting_display_media_show_all: メディアを常に表示する
+        setting_quick_boosting_html: 有効にすると、 %{boost_icon} ブーストアイコンをクリックするとブースト/引用を選択するドロップダウンメニューを開かず、即座にブーストします。引用機能は %{options_icon} (オプション) メニュー内に移動します
         setting_system_scrollbars_ui: Safari/Chromeベースのデスクトップブラウザーでのみ有効です
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
@@ -236,10 +238,12 @@ ja:
         setting_aggregate_reblogs: ブーストをまとめる
         setting_always_send_emails: 常にメール通知を送信する
         setting_auto_play_gif: アニメーションGIFを自動再生する
+        setting_boost_modal: ブーストの公開範囲を毎回確認する
         setting_default_language: 投稿する言語
         setting_default_privacy: 投稿の公開範囲
         setting_default_quote_policy: 引用できるユーザー
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
+        setting_delete_modal: 投稿を削除する前に警告を表示する
         setting_disable_hover_cards: マウスオーバーでプロフィールをポップアップしない
         setting_disable_swiping: スワイプでの切り替えを無効にする
         setting_display_media: メディアの表示
@@ -250,7 +254,8 @@ ja:
         setting_expand_spoilers: 閲覧注意としてマークされた投稿を常に展開する
         setting_hide_network: 繋がりを隠す
         setting_hide_translate_button: 翻訳ボタンを非表示にする
-        setting_missing_alt_text_modal: 代替テキストなしでメディアを投稿する前に確認ダイアログを表示する
+        setting_missing_alt_text_modal: 代替テキストなしでメディアを投稿する前に警告を表示する
+        setting_quick_boosting: クイックブーストを有効にする
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_system_scrollbars_ui: システムのデフォルトのスクロールバーを使う
