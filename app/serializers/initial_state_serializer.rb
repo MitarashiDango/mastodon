@@ -113,6 +113,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     {
       me: object.current_account.id.to_s,
       boost_modal: object_account_user.setting_boost_modal,
+      quick_boosting: object_account_user.setting_quick_boosting,
       delete_modal: object_account_user.setting_delete_modal,
       missing_alt_text_modal: object_account_user.settings['web.missing_alt_text_modal'],
       auto_play_gif: object_account_user.setting_auto_play_gif,
