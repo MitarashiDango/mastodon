@@ -79,6 +79,16 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   private
 
+  def wrapstodon
+    current_campaign = AnnualReport.current_campaign
+    return if current_campaign.blank?
+
+    {
+      year: current_campaign,
+      state: AnnualReport.new(object.current_account, current_campaign).state,
+    }
+  end
+
   def default_meta_store
     {
       access_token: object.token,
@@ -132,6 +142,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       crop_attachment_thumbnails_on_timeline: object_account_user.setting_crop_attachment_thumbnails_on_timeline,
       reverse_nav: object_account_user.setting_reverse_nav,
       emoji_style: object_account_user.settings['web.emoji_style'],
+      wrapstodon: wrapstodon,
     }
   end
 

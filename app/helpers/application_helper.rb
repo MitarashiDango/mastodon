@@ -163,10 +163,9 @@ module ApplicationHelper
     'legacy' => 'legacy-style',
   }.freeze
 
-  def body_classes
+  def html_classes
     output = []
-    output << content_for(:body_classes)
-    output << "theme-#{current_theme.parameterize}"
+    output << content_for(:html_classes)
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << 'custom-scrollbars' unless current_account&.user&.setting_system_scrollbars_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
@@ -174,6 +173,12 @@ module ApplicationHelper
     output << WEBUI_STYLES[current_account&.user&.setting_webui_styles]
     output << 'reverse-nav' if current_account&.user&.setting_reverse_nav
     output << 'rtl' if locale_direction == 'rtl'
+    output.compact_blank.join(' ')
+  end
+
+  def body_classes
+    output = []
+    output << content_for(:body_classes)
     output.compact_blank.join(' ')
   end
 

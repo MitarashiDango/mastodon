@@ -43,6 +43,8 @@ class UserSettings
     setting :hide_translate_button, default: false
     setting :crop_attachment_thumbnails_on_timeline, default: false
     setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
+    setting :color_scheme, default: 'auto', in: %w(auto light dark)
+    setting :contrast, default: 'auto', in: %w(auto high)
   end
 
   namespace :notification_emails do
