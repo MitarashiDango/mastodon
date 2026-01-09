@@ -22,3 +22,12 @@
 @use 'mastodon/dashboard';
 @use 'mastodon/rtl';
 @use 'mastodon/rich_text';
+
+@use 'mods/announcements';
+@use 'mods/custom';
+
+@use 'mods/bigger-publish';
+@use 'mods/wider-column';
+@use 'mods/compact-padding';
+@use 'mods/legacy-style';
+@use 'mods/reverse-nav';
