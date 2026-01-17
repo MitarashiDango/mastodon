@@ -53,7 +53,8 @@ html:where([data-user-theme='mastodon-light']) {
   @include utils.invert-on-light;
 }
 
-html:where([data-user-theme='akane-blue']) {
+html:where([data-user-theme='akane-blue']),
+html:where([data-user-theme='classic']) {
   color-scheme: dark;
 
   @include dark.tokens;
