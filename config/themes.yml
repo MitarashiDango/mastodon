@@ -1,1 +1,2 @@
 default: styles/application.scss
+akane-blue: styles/application-akane-blue.scss

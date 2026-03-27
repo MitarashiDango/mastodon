@@ -2070,6 +2070,7 @@ en:
     title: The terms of service of %{domain} are changing
   themes:
     default: Mastodon
+    akane-blue: akane-blue
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
