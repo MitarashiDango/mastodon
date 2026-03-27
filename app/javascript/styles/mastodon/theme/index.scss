@@ -1,7 +1,6 @@
 @use 'base';
 @use 'dark';
 @use 'light';
-@use 'akane-blue';
 @use 'utils';
 
 html {
@@ -51,19 +50,4 @@ html:where([data-user-theme='mastodon-light']) {
 
   @include light.tokens;
   @include utils.invert-on-light;
-}
-
-html:where([data-user-theme='akane-blue']) {
-  color-scheme: dark;
-
-  @include dark.tokens;
-  @include utils.invert-on-dark;
-
-  @include akane-blue.palette;
-  @include akane-blue.tokens;
-
-  @media (prefers-contrast: more) {
-    @include dark.contrast-overrides;
-    @include akane-blue.contrast-overrides;
-  }
 }

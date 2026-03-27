@@ -20,7 +20,7 @@
 .column > .scrollable,
 .column-subheading,
 .notification__filter-bar {
-    background: var(--color-classic-base);
+    background: #282c37;
     border-radius: 0 0 4px 4px;
 }
 
@@ -129,7 +129,7 @@ body.admin {
 }
 
 .admin-wrapper .sidebar-wrapper__inner {
-    background: var(--color-classic-base);
+    background: #282c37;
 }
 
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf {
