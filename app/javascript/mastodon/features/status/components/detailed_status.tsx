@@ -407,6 +407,7 @@ export const DetailedStatus: React.FC<{
             <FormattedMessage
               id='status.direct_indicator'
               defaultMessage='Private mention'
+              tagName='span'
             />
           </div>
         )}

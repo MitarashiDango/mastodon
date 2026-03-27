@@ -12,7 +12,9 @@ fr:
     followers:
       one: Abonné·e
       other: Abonné·e·s
-    following: Abonnements
+    following:
+      one: Abonnement
+      other: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
@@ -23,11 +25,11 @@ fr:
       one: Message
       other: Messages
     posts_tab_heading: Messages
-    self_follow_error: Il n'est pas possible de suivre votre propre compte
+    self_follow_error: Suivre votre propre compte n'est pas autorisé
   admin:
     account_actions:
       action: Effectuer l'action
-      already_silenced: Ce compte a déjà été limité.
+      already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -46,18 +48,19 @@ fr:
         current_email: Adresse de courriel actuelle
         label: Modifier l’adresse de courriel
         new_email: Nouvelle adresse de courriel
-        submit: Modifier le courriel
+        submit: Modifier l’adresse de courriel
         title: Modifier l’adresse de courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
-        edit_roles: Gérer les rôles d'utilisateur·ices
+        edit_roles: Gérer les rôles d'utilisateur·ice
         label: Modifier le rôle
         no_role: Aucun rôle
         title: Modifier le rôle de %{username}
+      collections: Collections
       confirm: Confirmer
       confirmed: Confirmé
-      confirming: Confirmation
-      custom: Personnalisé
+      confirming: Confirmation en attente
+      custom: Personnaliser
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
@@ -77,7 +80,7 @@ fr:
       enabled_msg: Le compte de %{username} a été dégelé avec succès
       followers: Abonné·e·s
       follows: Abonnements
-      header: Entête
+      header: Image de couverture
       inbox_url: URL d’entrée
       invite_request_text: Raisons de l’adhésion
       invited_by: Invité par
@@ -125,7 +128,7 @@ fr:
       remote_suspension_irreversible: Les données de ce compte ont été supprimées définitivement.
       remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur d'accueil, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
       remove_avatar: Supprimer l’avatar
-      remove_header: Supprimer l’entête
+      remove_header: Supprimer l'image de couverture
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
@@ -264,6 +267,7 @@ fr:
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_canonical_email_block_html: "%{name} a débloqué l'adresse email avec le hachage %{target}"
+        destroy_collection_html: "%{name} a supprimé la collection de %{target}"
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
@@ -303,6 +307,7 @@ fr:
         unsilence_account_html: "%{name} a annulé la limitation du compte de %{target}"
         unsuspend_account_html: "%{name} a réactivé le compte de %{target}"
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
+        update_collection_html: "%{name} a mis à jour la collections de %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
@@ -338,6 +343,15 @@ fr:
       unpublish: Retirer l'annonce
       unpublished_msg: L’annonce a été dépubliée avec succès !
       updated_msg: L’annonce a été mise à jour avec succès !
+    collections:
+      accounts: Comptes
+      collection_title: Collection par %{name}
+      contents: Contenu
+      number_of_accounts:
+        one: 1 compte
+        other: "%{count} comptes"
+      open: Ouvrir
+      view_publicly: Afficher publiquement
     critical_update_pending: Mise à jour critique en attente
     custom_emojis:
       assign_category: Attribuer une catégorie
@@ -680,6 +694,7 @@ fr:
       cancel: Annuler
       category: Catégorie
       category_description_html: La raison pour laquelle ce compte et/ou ce contenu a été signalé sera citée dans la communication avec le compte signalé
+      collections: Collections (%{count})
       comment:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
@@ -709,12 +724,13 @@ fr:
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
       reported_by: Signalé par
+      reported_content: Contenu signalé
       reported_with_application: Signalé avec l'application
       resolved: Résolus
       resolved_msg: Signalement résolu avec succès !
       skip_to_actions: Passer aux actions
       status: Statut
-      statuses: Contenu signalé
+      statuses: Messages (%{count})
       statuses_description_html: Le contenu offensant sera cité dans la communication avec le compte signalé
       summary:
         action_preambles:
@@ -765,6 +781,8 @@ fr:
         administrator_description: Les utilisateur⋅rice⋅s ayant cette autorisation pourront contourner toutes les autorisations
         delete_user_data: Supprimer les données de l'utilisateur⋅rice
         delete_user_data_description: Permet aux utilisateur⋅rice⋅s de supprimer sans délai les données des autres utilisateur⋅rice⋅s
+        invite_bypass_approval: Inviter des utilisateurs sans vérifications
+        invite_bypass_approval_description: Permet aux personnes invitées sur le serveur par ces utilisateur·rice·s de s'inscrire sans être soumises à l'approbation de la modération
         invite_users: Inviter des utilisateur⋅rice⋅s
         invite_users_description: Permet aux utilisateur⋅rice⋅s d'inviter de nouvelles personnes sur le serveur
         manage_announcements: Gérer les annonces
@@ -803,6 +821,7 @@ fr:
         view_devops_description: Permet aux utilisateur⋅rice⋅s d'accéder aux tableaux de bord Sidekiq et pgHero
         view_feeds: Voir les flux en direct et les fils de discussion
         view_feeds_description: Permet aux utilisateur·rice·s d'accéder aux flux en direct et de discussion indépendamment des paramètres du serveur
+      requires_2fa: Nécessite une authentification à deux facteurs
       title: Rôles
     rules:
       add_new: Ajouter une règle
@@ -1215,7 +1234,6 @@ fr:
   application_mailer:
     notification_preferences: Modification des préférences de la messagerie
     salutation: "%{name},"
-    settings: 'Modifier les préférences de la messagerie : %{link}'
     unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
@@ -1265,6 +1283,7 @@ fr:
     progress:
       confirm: Confirmation de l'adresse mail
       details: Vos infos
+      list: Progression de l'inscription
       review: Notre avis
       rules: Accepter les règles
     providers:
@@ -1280,6 +1299,7 @@ fr:
       invited_by: 'Vous pouvez rejoindre %{domain} grâce à l''invitation de :'
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       preamble_invited: Avant de continuer, veuillez lire les règles de base définies par les modérateurs de %{domain}.
+      read_more: Lire plus
       title: Quelques règles de base.
       title_invited: Vous avez été invité·e.
     security: Sécurité
@@ -1635,21 +1655,6 @@ fr:
     failed_sign_in_html: Tentative de connexion échouée avec %{method} de %{ip} (%{browser})
     successful_sign_in_html: Connexion réussie avec %{method} de %{ip} (%{browser})
     title: Historique d'authentification
-  mail_subscriptions:
-    unsubscribe:
-      action: Oui, se désinscrire
-      complete: Désinscrit
-      confirmation_html: Êtes-vous sûr de vouloir vous désabonner de la réception de %{type} pour Mastodon sur %{domain} à votre adresse e-mail %{email} ? Vous pouvez toujours vous réabonner à partir de vos paramètres de <a href="%{settings_path}">notification par messagerie</a>.
-      emails:
-        notification_emails:
-          favourite: e-mails de notifications de favoris
-          follow: e-mails de notifications d’abonnements
-          follow_request: e-mails de demandes d’abonnements
-          mention: e-mails de notifications de mentions
-          reblog: e-mails de notifications de partages
-      resubscribe_html: Si vous vous êtes désinscrit par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
-      success_html: Vous ne recevrez plus de %{type} pour Mastodon sur %{domain} à votre adresse e-mail à %{email}.
-      title: Se désinscrire
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
@@ -1789,9 +1794,9 @@ fr:
   privacy:
     hint_html: "<strong>Personnalisez la façon dont votre profil et vos messages peuvent être découverts.</strong> Mastodon peut vous aider à atteindre un public plus large lorsque certains paramètres sont activés. Prenez le temps de les examiner pour vous assurer qu’ils sont configurés comme vous le souhaitez."
     privacy: Confidentialité
-    privacy_hint_html: Contrôlez ce que vous souhaitez divulguer. Les gens découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant lesquelles sont utilisées par d’autres pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
+    privacy_hint_html: Contrôler ce que vous souhaitez divulguer. Les utilisateur·rice·s découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant celles utilisées pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
     reach: Portée
-    reach_hint_html: Contrôlez si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos publications apparaissent sur l’écran Explorer ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
+    reach_hint_html: Contrôler si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos messages puissent apparaître dans les tendances ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
     search: Recherche
     search_hint_html: Contrôlez la façon dont vous voulez être retrouvé. Voulez-vous que les gens vous trouvent selon ce que vous avez publié publiquement ? Voulez-vous que des personnes extérieures à Mastodon trouvent votre profil en faisant des recherches sur le web ? N’oubliez pas que l’exclusion totale de tous les moteurs de recherche ne peut être garantie pour les informations publiques.
     title: Vie privée et visibilité
@@ -2022,10 +2027,7 @@ fr:
     review_link: Vérifier les conditions d'utilisation
     title: Les conditions d'utilisation de %{domain} ont changées
   themes:
-    contrast: Mastodon (Contraste élevé)
-    default: Mastodon (Sombre)
-    mastodon-light: Mastodon (Clair)
-    system: Automatique (utiliser le thème système)
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2050,6 +2052,8 @@ fr:
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    resume_app_authorization: Reprendre l'autorisation de l'application
+    role_requirement: "%{domain} nécessite de configurer une authentification à deux facteurs avant de pouvoir utiliser Mastodon."
     webauthn: Clés de sécurité
   user_mailer:
     announcement_published:
@@ -2105,7 +2109,7 @@ fr:
         disable: Vous ne pouvez plus utiliser votre compte, mais votre profil et d'autres données restent intacts. Vous pouvez demander une sauvegarde de vos données, modifier les paramètres de votre compte ou supprimer votre compte.
         mark_statuses_as_sensitive: Certains de vos messages ont été marqués comme sensibles par l'équipe de modération de %{instance}. Cela signifie qu'il faudra cliquer sur le média pour pouvoir en afficher un aperçu. Vous pouvez marquer les médias comme sensibles vous-même lorsque vous posterez à l'avenir.
         sensitive: Désormais, tous vos fichiers multimédias téléchargés seront marqués comme sensibles et cachés derrière un avertissement à cliquer.
-        silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et vous pourriez être exclu de diverses fonctions de découverte. Cependant, d'autres personnes peuvent toujours vous suivre manuellement.
+        silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et votre compte pourra être exclu des fonctions de découverte. Cependant, les utilisateur·rice·s peuvent toujours vous suivre manuellement.
         suspend: Vous ne pouvez plus utiliser votre compte, votre profil et vos autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à leur suppression complète dans environ 30 jours, mais nous conserverons certaines données de base pour vous empêcher d'échapper à la suspension.
       reason: 'Motif :'
       statuses: 'Messages cités :'

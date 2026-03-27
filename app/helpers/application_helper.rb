@@ -163,6 +163,19 @@ module ApplicationHelper
     'legacy' => 'legacy-style',
   }.freeze
 
+  def html_attributes
+    base = {
+      lang: I18n.locale,
+      class: html_classes,
+      'data-contrast': contrast.parameterize,
+      'data-color-scheme': page_color_scheme.parameterize,
+    }
+
+    base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
+
+    base
+  end
+
   def html_classes
     output = []
     output << content_for(:html_classes)
