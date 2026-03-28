@@ -20,6 +20,7 @@ import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
 import { loadLocale, getLocale } from '../mastodon/locales';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
+import { WordmarkLogo } from '@/mastodon/components/logo';
 
 import 'cocoon-js-vanilla';
 
@@ -181,6 +182,12 @@ function loaded() {
       .catch((error: unknown) => {
         console.error(error);
       });
+  }
+
+  const authLogoHost = document.querySelector<HTMLElement>('.logo-react-root');
+  if (authLogoHost) {
+    const root = createRoot(authLogoHost);
+    root.render(<WordmarkLogo />);
   }
 
   on(
