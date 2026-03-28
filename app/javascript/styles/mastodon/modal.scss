@@ -1,7 +1,6 @@
 @use 'variables' as *;
 
 .modal-layout {
-  background: var(--color-bg-brand-softest);
   display: flex;
   flex-direction: column;
   height: 100vh;
