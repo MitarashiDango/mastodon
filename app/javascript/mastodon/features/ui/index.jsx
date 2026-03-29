@@ -651,7 +651,7 @@ class UI extends PureComponent {
 
     return (
       <Hotkeys global handlers={handlers}>
-        <div className={classNames('ui', { 'is-composing': isComposing }, { 'wider-column': widerColumn && advancedLayout })} ref={this.setRef}>
+        <div className={classNames('ui', { 'is-composing': isComposing }, { 'wider-column': widerColumn && advancedLayout && !(layout === 'mobile' || layout === 'single-column') })} ref={this.setRef}>
           <SkipLinks
             multiColumn={layout === 'multi-column'}
             onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
