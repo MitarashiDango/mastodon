@@ -623,6 +623,7 @@ class Status extends ImmutablePureComponent {
                 <Permalink
                   className='mods_status__datetime'
                   href={status.get('url')}
+                  to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
